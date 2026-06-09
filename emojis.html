@@ -268,7 +268,36 @@
     <div id="divLastModified">Last updated: 09-Jun-2026</div>
   <br/><br/>
   <script type="text/javascript">
-    document.getElementById("divLastModified").innerText = "Last updated: " + document.lastModified;
-</script>
+   async function getLastModifiedDate(url)
+   {
+        try {
+            // Configure fetch to use the HEAD method
+            const response = await fetch(url, {
+            method: 'HEAD'
+            });
+
+            // Ensure the network request was successful
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            // Retrieve the 'Last-Modified' header value
+            const lastModified = response.headers.get('Last-Modified');
+
+            if (lastModified) {
+                console.log(`Last-Modified Header: ${lastModified}`);
+                document.getElementById("divLastModified").innerText = "Last updated: " + lastModified;
+                return lastModified;
+            } else {
+            console.log("The 'Last-Modified' header was not returned by the server.");
+            return null;
+            }
+        } catch (error) {
+            console.error('Fetch operation failed:', error);
+        }
+    }
+    
+    getLastModifiedDate(window.location.href);
+  </script>
  </body>
 </html>
