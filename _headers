@@ -1,5 +1,6 @@
 /
   Cache-Control: public, max-age=3600, immutable
+  Last-Modified: Tue, 09 Jun 2026 17:51:45 GMT
 
 /images/*
   Cache-Control: public, max-age=2592000
