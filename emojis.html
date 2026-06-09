@@ -17,9 +17,24 @@
         {
             white-space: nowrap;
         }
-        .gradient-icon
+        .prideheart
         {
             background: linear-gradient(#FF0000, #FF9900, #FFFF00, #00FF00, #0000FF, #800080);
+            
+            /* Clip the background exactly to the text/icon shape */
+            -webkit-background-clip: text;
+                    background-clip: text;
+            
+            /* Make the original icon color completely transparent */
+            -webkit-text-fill-color: transparent;
+                    color: transparent;
+            
+            /* Optional: Inline blocks handle gradients more reliably */
+            display: inline-block; 
+        }
+        .transheart
+        {
+            background: linear-gradient(#5bcffa, #F6AABA, #FFFFFF, #F6AABA, #5bcffa);
             
             /* Clip the background exactly to the text/icon shape */
             -webkit-background-clip: text;
@@ -72,8 +87,13 @@
     </tr>
     <tr>
         <td class="gui">Pride Heart</td>
-        <td class="gui center"><i class="fa-solid fa-heart gradient-icon"></td>
+        <td class="gui center"><i class="fa-solid fa-heart prideheart"></td>
         <td class="gui">LGBTQ Love</td>
+    </tr>
+    <tr>
+        <td class="gui">Trans Heart</td>
+        <td class="gui center"><i class="fa-solid fa-heart transheart"></td>
+        <td class="gui">Transgender Love</td>
     </tr>
     <tr>
         <td class="gui">Brown</td>
@@ -245,7 +265,10 @@
     </tr>
     </table><br/>
 <div>* indicates multiple meanings</div>
-    <div>Last updated: 03-Nov-2025</div>
+    <div id="divLastModified">Last updated: 09-Jun-2026</div>
   <br/><br/>
+  <script type="text/javascript">
+    document.getElementById("divLastModified").innerText = "Last updated: " + document.lastModified;
+</script>
  </body>
 </html>
