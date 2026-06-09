@@ -5,20 +5,10 @@
     <title>Any Love Emoji Reference</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+    <link rel="preload" as="style" href="assets/css/facustom.min.css" onload="this.rel='stylesheet';this.onload=null;">
+	<noscript><link rel="stylesheet" href="assets/css/facustom.min.css"></noscript>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <style>
-        /* remmed out for w3.css
-        table.gui
-        {
-            border-collapse: collapse;
-        }
-        .gui
-        {
-            border: 1px solid #000000;
-            padding: 2px 2px 2px 2px;
-            text-align: left;
-        }
-        */
         .center
         {
             text-align: center;
@@ -26,6 +16,21 @@
         .nowrap
         {
             white-space: nowrap;
+        }
+        .gradient-icon
+        {
+            background: linear-gradient(#FF0000, #FF9900, #FFFF00, #00FF00, #0000FF, #800080);
+            
+            /* Clip the background exactly to the text/icon shape */
+            -webkit-background-clip: text;
+                    background-clip: text;
+            
+            /* Make the original icon color completely transparent */
+            -webkit-text-fill-color: transparent;
+                    color: transparent;
+            
+            /* Optional: Inline blocks handle gradients more reliably */
+            display: inline-block; 
         }
     </style>
 </head>
@@ -67,7 +72,7 @@
     </tr>
     <tr>
         <td class="gui">Pride Heart</td>
-        <td class="gui center"><img src="images/prideheart.png" alt="Pride Heart" style="width: 16px; height: 16px;"><!--&#127987;&#65039;&#8205;&#127752;--></td>
+        <td class="gui center"><i class="fa-solid fa-heart gradient-icon"></td>
         <td class="gui">LGBTQ Love</td>
     </tr>
     <tr>
