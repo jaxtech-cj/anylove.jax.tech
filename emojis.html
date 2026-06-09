@@ -280,10 +280,9 @@
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-
-            // Retrieve the 'Last-Modified' header value
+            
             const lastModified = response.headers.get('Last-Modified');
-
+            
             if (lastModified) {
                 console.log(`Last-Modified Header: ${lastModified}`);
                 document.getElementById("divLastModified").innerText = "Last updated: " + lastModified;
