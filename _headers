@@ -6,5 +6,8 @@
 /images/*
   Cache-Control: public, max-age=2592000
 
+/assets/*
+  Cache-Control: public, max-age=2592000
+
 https://anylove-jax-tech.pages.dev/*
   X-Robots-Tag: noindex
