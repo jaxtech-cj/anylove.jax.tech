@@ -17,3 +17,6 @@
 
 https://anylove-jax-tech.pages.dev/*
   X-Robots-Tag: noindex
+
+https://static.cloudflareinsights.com/*
+  Cache-Control: public, max-age=2592000, immutable
