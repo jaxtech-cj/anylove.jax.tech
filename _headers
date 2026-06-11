@@ -23,3 +23,5 @@ https://static.cloudflareinsights.com/beacon.min.js
 
 https://static.cloudflareinsights.com/*
   Cache-Control: public, max-age=2592000, immutable
+
+#cache-control 60 seconds x 60 minutes x 24 hours = 86400
