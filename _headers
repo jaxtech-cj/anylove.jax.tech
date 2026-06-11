@@ -6,7 +6,13 @@
 /images/*
   Cache-Control: public, max-age=2592000
 
-/assets/*
+/assets/fonts/*
+  Cache-Control: public, max-age=2592000
+
+/assets/css/*
+  Cache-Control: public, max-age=2592000
+
+/assets/webfonts/*
   Cache-Control: public, max-age=2592000
 
 https://anylove-jax-tech.pages.dev/*
