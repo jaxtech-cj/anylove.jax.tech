@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    /* Ensure the body expands to fill the window */
+    body {
+      margin: 0;
+      height: 100vh; 
+    }
+
+    /* Configure the 100% height grid */
+    .app-layout {
+      display: grid;
+      height: 100%; 
+      grid-template-rows: 80px 1fr 60px; /* Fixed sizes + 1 flexible row */
+    }
+
+    .header { background: #1a1a2e; color: white; }
+    .footer { background: #16161d; color: white; }
+    
+    /* Crucial: Prevent content from stretching the flexible middle row */
+    .main-content { 
+      background: #e2e8f0; 
+      min-height: 0; 
+      overflow-y: auto; 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout">
+    <header class="header">Header (Fixed 80px)</header>
+    <main class="main-content">Main Content (Fills remaining height via 1fr)</main>
+    <footer class="footer">Footer (Fixed 60px)</footer>
+  </div>
+
+</body>
+</html>
