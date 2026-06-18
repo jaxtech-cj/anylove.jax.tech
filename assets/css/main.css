@@ -81,10 +81,15 @@ ul.icons {
   padding-left: 0; }
   ul.icons li {
     display: inline-block;
+    padding-right: 3px;
     }
     ul.icons li a {
       color: inherit;
       text-decoration: none;
+}
+header
+{
+  z-index: 3;
 }
 #footer
 {
