@@ -60,16 +60,15 @@
 				alert("The app is under development.")
 			}
 
-			function sharePage()
+			async function sharePage()
 			{
 				const shareData = {
 					title: 'Any Love',
-					text: 'Revolutionizing Finding Love',
-					url: 'https://anylove.jax.tech',
+					url: 'https://anylove.jax.tech'
 				};
 				
 				try {
-					navigator.share(shareData);
+					await navigator.share(shareData);
 				} catch (err) {
 					console.error(`Error: ${err}`);
 				}
