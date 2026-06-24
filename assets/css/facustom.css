@@ -616,21 +616,25 @@
  /* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
     readers do not read off random characters that represent icons */
  
+    .fa-copy {
+      --fa: "\f0c5";
+    }
+
     .fa-square-rss {
       --fa: "\f143";
-      --fa--fa: "\f143\f143"; }
+    }
   
   .fa-laptop-arrow-down {
       --fa: "\e1c6";
-      --fa--fa: "\e1c6\e1c6"; }
+}
   
   .fa-share-nodes {
       --fa: "\f1e0";
-      --fa--fa: "\f1e0\f1e0"; }
+}
   
   .fa-heart {
       --fa: "\f004";
-      --fa--fa: "\f004\f004"; }
+}
 
     :root, :host {
    --fa-family-brands: "Font Awesome 7 Brands";

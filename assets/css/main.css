@@ -68,6 +68,10 @@ ol, ul {
   100% {
     transform: translateX(-25%); }
 }
+a.rss
+{
+  color: #000000;
+}
 a:hover {
     color: #FF0000 !important;
 }
