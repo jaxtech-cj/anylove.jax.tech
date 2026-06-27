@@ -119,3 +119,36 @@
 
 		})();
 })();
+
+function copyRSSURL() {
+	navigator.clipboard.writeText("https://jax.tech/anylove/rsstest.xml");
+}
+
+function downloadApp()
+{
+	alert("The app is under development.")
+}
+
+async function sharePage()
+{
+	const shareData = {
+		title: 'Any Love',
+		url: 'https://anylove.jax.tech'
+	};
+	
+	try {
+		await navigator.share(shareData);
+	} catch (err) {
+		console.error(`Error: ${err}`);
+	}
+}
+
+function generateBrowserNonce() {
+    const array = new Uint8Array(16);
+    window.crypto.getRandomValues(array);
+    return btoa(String.fromCharCode(...array));
+  }
+  
+//const nonce = generateBrowserNonce();
+//console.log(nonce); // Example: "dGhpcyBpcyBhIG5vbmNl"
+  
