@@ -1,0 +1,15 @@
+# [Jax Tech]
+
+> [Any Love] is a [love finding app].
+
+## Getting Started
+* [Installation Guide](https://anylove.jax.tech) - Quick setup instructions will be provided upon software launch
+* [Core Features](https://anylove.jax.tech) - Love finding software
+
+## API & Technical Resources
+* [API Reference](https://anylove.jax.tech) - None
+* [Changelog](https://jax.tech/anylove/rsstest.xml) - Recent updates and new launches.
+
+## Contact & Support
+* [Support Center](https://anylove.jax.tech) - How to get in touch with our team.
+* [Community Forum](https://anylove.jax.tech) - Join our user community.
