@@ -10,6 +10,25 @@ body {
   font-size: 16pt;
   background-color: #000;
 }
+@font-face
+{
+  font-family: 'Bellota';
+  src: url('../fonts/bellota-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
+  ascent-override: 0.968;
+    descent-override: 0.29;
+    line-gap-override: 0;
+  font-display: swap;
+}
+@font-face
+{
+  font-family: 'Roboto';
+  src: url('../fonts/roboto-latin-400-normal.woff2') format('woff2');
+  ascent-override: 0.927;
+    descent-override: 0.244;
+    line-gap-override: 0;
+  font-display: swap;
+}
 body.is-preload *, body.is-preload *:before, body.is-preload *:after {
     animation: none !important;
     transition: none !important; }
