@@ -1,7 +1,14 @@
 /*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Frame-Options: DENY
+  Cross-Origin-Opener-Policy: same-origin
+  Permissions-Policy: geolocation=(self "https://anylove.jax.tech")
+  X-XSS-Protection: 1; mode=block
+  Access-Control-Allow-Origin: https://anylove.jax.tech
   Cache-Control: public, max-age=2592000, immutable
   #Cache-Control: public, max-age=3600, immutable
-  Last-Modified: Tue, 10 Jun 2026 17:51:45 GMT
+  Last-Modified: Tue, 27 Jun 2026 17:51:45 GMT
+  #Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-mJvK11NyrlXnbPiR7YgR7g=='; style-src 'self' 'unsafe-inline'; object-src 'none'; img-src 'self'; base-uri 'self'; frame-ancestors 'none'; media-src 'self'; require-trusted-types-for 'script'
 
 /images/*
   #Cache-Control: public, max-age=2592000, immutable
