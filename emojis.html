@@ -29,7 +29,10 @@
             color: light-dark(var(--dark),var(--light));
             background-color: light-dark(var(--light), var(--dark));
         }
-
+        i.pointer
+        {
+            cursor: pointer;
+        }
         .center
         {
             text-align: center;
@@ -291,9 +294,9 @@
     </table><br/>
 <div>* indicates multiple meanings</div>
 <div>Color Scheme:
-    <i class="fa-duotone fa-solid fa-circle-half-stroke" alt="System" id="theme-system"></i>
-    <i class="fa-regular fa-moon" alt="Dark Theme" id="theme-dark"></i>
-    <i class="fa-regular fa-sun-bright" alt="Light Theme" id="theme-light"></i>
+    <i class="fa-duotone fa-solid fa-circle-half-stroke pointer" alt="System" id="theme-system"></i>
+    <i class="fa-regular fa-moon pointer" alt="Dark Theme" id="theme-dark"></i>
+    <i class="fa-regular fa-sun-bright pointer" alt="Light Theme" id="theme-light"></i>
 </div>
     <div id="divLastModified">Last updated: 07-Jul-2026</div>
   <br/><br/>
@@ -330,7 +333,7 @@
         }
     }
     
-    getLastModifiedDate(window.location.href);
+    //getLastModifiedDate(window.location.href);
   </script>
   
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "75deaa9c228b44c9be9af0f90fc8532d"}' nonce="AqHF5cLWrH+GjEXjNcEy2A=="></script><!-- End Cloudflare Web Analytics -->
