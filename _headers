@@ -10,6 +10,9 @@
   Last-Modified: Tue, 27 Jun 2026 17:51:45 GMT
   Content-Security-Policy: default-src 'self'; connect-src 'self' https://cloudflareinsights.com static.cloudflareinsights.com; script-src 'nonce-AqHF5cLWrH+GjEXjNcEy2A==' 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; object-src 'none'; img-src 'self'; base-uri 'self'; frame-ancestors 'none'; media-src 'self'; require-trusted-types-for 'script'
 
+/emojis.html
+Cache-Control: public, max-age=0, immutable
+
 /images/*
   #Cache-Control: public, max-age=2592000, immutable
 
