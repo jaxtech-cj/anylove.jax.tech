@@ -28,10 +28,4 @@ Cache-Control: public, max-age=0, immutable
 https://anylove-jax-tech.pages.dev/*
   X-Robots-Tag: noindex
 
-https://static.cloudflareinsights.com/beacon.min.js
-  Cache-Control: public, max-age=2592000, immutable
-
-https://static.cloudflareinsights.com/*
-  Cache-Control: public, max-age=2592000, immutable
-
 #cache-control 60 seconds x 60 minutes x 24 hours = 86400
