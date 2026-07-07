@@ -616,6 +616,8 @@
  /* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
     readers do not read off random characters that represent icons */
  
+
+
     .fa-copy {
       --fa: "\f0c5";
     }
@@ -632,8 +634,72 @@
       --fa: "\f1e0";
 }
   
-  .fa-heart {
-      --fa: "\f004";
+.fa-heart { --fa: "\f004"; }
+.fa-circle-half-stroke { --fa: "\f042"; }
+.fa-moon { --fa: "\f186"; }
+.fa-sun-bright { --fa: "\e28f"; }
+
+:root, :host {
+  --fa-family-duotone: "Font Awesome 7 Duotone";
+  --fa-font-duotone: normal 900 1em/1 var(--fa-family-duotone);
+  /* deprecated: this older custom property will be removed next major release */
+  --fa-style-family-duotone: var(--fa-family-duotone);
+}
+
+@font-face {
+  font-family: "Font Awesome 7 Duotone";
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url("../webfonts/fa-duotone-900.woff2");
+}
+.fad,
+.fa-duotone {
+  --fa-family: var(--fa-family-duotone);
+  --fa-style: 900;
+  position: relative;
+  letter-spacing: normal;
+}
+
+.fad::before,
+.fa-duotone::before {
+  position: absolute;
+  color: var(--fa-primary-color, currentColor);
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.fad::after,
+.fa-duotone::after {
+  color: var(--fa-secondary-color, currentColor);
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.fa-swap-opacity .fad::before,
+.fa-swap-opacity .fa-duotone::before,
+.fad.fa-swap-opacity::before,
+.fa-duotone.fa-swap-opacity::before {
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.fa-swap-opacity .fad::after,
+.fa-swap-opacity .fa-duotone::after,
+.fad.fa-swap-opacity::after,
+.fa-duotone.fa-swap-opacity::after {
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.fad.fa-li,
+.fa-duotone.fa-li,
+.fad.fa-stack-1x,
+.fa-duotone.fa-stack-1x,
+.fad.fa-stack-2x,
+.fa-duotone.fa-stack-2x {
+  position: absolute;
+}:root, :host {
+  --fa-family-classic: "Font Awesome 7 Pro";
+  --fa-font-light: normal 300 1em/1 var(--fa-family-classic);
+  /* deprecated: this older custom property will be removed next major release */
+  --fa-style-family-classic: var(--fa-family-classic);
 }
 
     :root, :host {

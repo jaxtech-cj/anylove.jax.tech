@@ -60,9 +60,9 @@
 					<!--<li><a href="https://facebook.com/anyloveinc" class="fa-brands fa-facebook" title="Facebook"></a></li>-->
 					<li><a href="https://bsky.app/profile/any-love.bsky.social" class="fa-brands fa-bluesky" title="Bluesky"></a></li>
 					<li><a href="https://pinterest.com/anyloveinc" class="fa-brands fa-pinterest" title="Pinterest"></a></li>
-					<li><a href="javascript: document.getElementById('diaRSSFeed').showModal();" class="fa-solid fa-square-rss" title="RSS Feed 3"></a></li>
-					<li><a href="javascript: downloadApp();" class="fa-solid fa-laptop-arrow-down" title="Download App"></a></li>
-					<li><a href="javascript: sharePage();" class="fa-regular fa-share-nodes" title="Share Page"></a></li>
+					<li><a class="fa-solid fa-square-rss" title="RSS Feed" id="iRSSFeed"></a></li>
+					<li><a class="fa-solid fa-laptop-arrow-down" title="Download App" id="iDownloadApp"></a></li>
+					<li><a class="fa-regular fa-share-nodes" title="Share Page" id="iShareNodes"></a></li>
 					<li><a href="emojis.html" class="fa-solid fa-heart" title="Emoji's"></a></li>
 				</ul>
 				<div class="copyright">
@@ -71,5 +71,11 @@
 	  </footer>
 	</div>
 	<script src="assets/js/main.min.js" nonce="AqHF5cLWrH+GjEXjNcEy2A==" defer></script>
+	<!--<script type="text/javascript" src="assets/js/fontanalyze.js" defer></script>-->
+	<script nonce="AqHF5cLWrH+GjEXjNcEy2A==" defer>
+    	document.getElementById("iShareNodes").addEventListener('click', (e) => { sharePage(); });
+		document.getElementById("iDownloadApp").addEventListener('click', (e) => { downloadApp(); });
+		document.getElementById("iRSSFeed").addEventListener('click', (e) => { document.getElementById('diaRSSFeed').showModal(); });
+   </script>
   </body>
 </html>
