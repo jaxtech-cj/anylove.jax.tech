@@ -1,8 +1,26 @@
 /*
-	Eventually by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Site by Corey Jackson and Eventually by HTML5 UP | html5up.net | @ajlkn | Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+
+function getSystemColorScheme() {
+  // Get OS preference
+  if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+    return 'light';
+  }
+  return 'dark';
+}
+
+function setColorScheme(theme)
+{
+    console.log(theme);
+    if (theme == "system")
+    {
+        theme = getSystemColorScheme();
+    }
+    //console.log(theme);
+    document.documentElement.style.colorScheme = theme;
+    //console.log(document.documentElement.style.colorScheme);
+}
 
 (function() {
 

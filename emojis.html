@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark light" />
     <title>Any Love Emoji Reference</title>
     <link rel="preconnect" href="https://cloudflareinsights.com">
 	<link rel="preconnect" href="https://static.cloudflareinsights.com">
@@ -16,7 +17,19 @@
 			document.getElementById("style2").addEventListener('load', (e) => { event.currentTarget.rel = 'stylesheet'; });
 			//document.addEventListener('DOMContentLoaded', () => { document.getElementById('spnEnv').innerText = window.location.hostname.includes('dev.jax.tech') ? 'DEV' : 'PROD' });
 	</script>
+    <script src="assets/js/main.min.js" nonce="AqHF5cLWrH+GjEXjNcEy2A==" defer></script>
     <style>
+        :root {
+            color-scheme: light dark; 
+            --light: #FFFFFF;
+            --dark: #000000;
+        }
+        body
+        {
+            color: light-dark(var(--dark),var(--light));
+            background-color: light-dark(var(--light), var(--dark));
+        }
+
         .center
         {
             text-align: center;
@@ -278,13 +291,17 @@
     </table><br/>
 <div>* indicates multiple meanings</div>
 <div>
-    <i class="fa-duotone fa-solid fa-circle-half-stroke"></i>
-    <i class="fa-regular fa-moon"></i>
-    <i class="fa-regular fa-sun-bright"></i>
+    <i class="fa-duotone fa-solid fa-circle-half-stroke" alt="System" id="theme-system"></i>
+    <i class="fa-regular fa-moon" alt="Dark Theme" id="theme-dark"></i>
+    <i class="fa-regular fa-sun-bright" alt="Light Theme" id="theme-light"></i>
 </div>
     <div id="divLastModified">Last updated: 07-Jul-2026</div>
   <br/><br/>
   <script type="text/javascript" nonce="AqHF5cLWrH+GjEXjNcEy2A==" defer>
+   document.getElementById("theme-system").addEventListener('click', (e) => { setColorScheme('system'); });
+   document.getElementById("theme-dark").addEventListener('click', (e) => { setColorScheme('dark'); });
+   document.getElementById("theme-light").addEventListener('click', (e) => { setColorScheme('light'); });
+
    async function getLastModifiedDate(url)
    {
         try {
@@ -315,6 +332,7 @@
     
     getLastModifiedDate(window.location.href);
   </script>
+  
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "75deaa9c228b44c9be9af0f90fc8532d"}' nonce="AqHF5cLWrH+GjEXjNcEy2A=="></script><!-- End Cloudflare Web Analytics -->
  </body>
 </html>
