@@ -1,20 +1,28 @@
 /*
 	Site by Corey Jackson and Eventually by HTML5 UP | html5up.net | @ajlkn | Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+
+//manage installed languages -  chrome://on-device-translation-internals
+
 const strSourceLang = "en";
 
-function translatePage(targetLang)
+/*function translatePage(targetLang)
 {
-	console.log("targetLang:" + targetLang);
-	//target language override for testing
-	//targetLang = "fr";
+	console.log("translatepage");
+}*/
 
+async function translatePage(targetLang)
+{
+	//target language override for testing
+	//targetLang = "ar";
+	console.log("targetLang:" + targetLang);
+	
 	//verify translation support
 	const translatorAvailability = await Translator.availability({
 		sourceLanguage: strSourceLang,
 		targetLanguage: targetLang,
 	});
-	console.log(translatorAvailability);
+	console.log("translatorAvailability:" + translatorAvailability);
 
 	if (translatorAvailability === "unavailable")
 	{
@@ -22,18 +30,43 @@ function translatePage(targetLang)
 		alert(targetLang + " language is unavailable in your browser");
 		return;
 	}
-	
-	const elements = document.querySelectorAll('[translate]');
-	
-	elements.forEach(element => {
-		//console.log(element.textContent);
-		translateText(targetLang, element.textContent).then((result) => {
+	else if (translatorAvailability === "downloadable")
+	{
+		try
+		{
+			const translator = await Translator.create({
+				sourceLanguage: strSourceLang,
+				targetLanguage: targetLang,
+				monitor(monitor) {
+					monitor.addEventListener("downloadprogress", (e) => {
+						console.log(`Downloaded ${Math.floor(e.loaded * 100)}%`);
+					});
+				},
+			});
+			console.log("download complete");
+			translator.destroy();
+
+			translatePage(targetLang);
+		}
+		catch (e)
+		{
+			console.log(e);
+		}
+	}
+	else if (translatorAvailability === "available")
+	{
+		const elements = document.querySelectorAll('[translate]');
+		
+		elements.forEach(element => {
+			//console.log(element.textContent);
+			translateText(targetLang, element.textContent).then((result) => {
+				//console.log(result);
+				element.textContent = result;
+			});
 			//console.log(result);
-			element.textContent = result;
+			//element.textContent = result;
 		});
-		//console.log(result);
-		//element.textContent = result;
-	});
+	}
 }
 
 async function translateText(targetLang, sourceText)
