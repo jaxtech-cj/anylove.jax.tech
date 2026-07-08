@@ -29,7 +29,7 @@ async function translatePage(targetLang)
 			sourceLanguage: strSourceLang,
 			targetLanguage: targetLang,
 		});
-		console.log("translatorAvailability:" + translatorAvailability);
+		//console.log("translatorAvailability:" + translatorAvailability);
 
 		if (translatorAvailability === "unavailable")
 		{
@@ -71,6 +71,11 @@ async function translatePage(targetLang)
 					element.textContent = result;
 				});
 			});
+		}
+		else
+		{
+			//unknown state
+			console.log("translatorAvailability:" + translatorAvailability);
 		}
 	}
 	else
