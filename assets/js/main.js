@@ -164,7 +164,7 @@ function setColorScheme(theme)
 }
 
 (function() {
-	if (location.href.includes("emojis.html"))
+	if (location.href.includes("emojis"))
 	{
 		return;
 	}
