@@ -71,6 +71,8 @@ async function translatePage(targetLang)
 					element.textContent = result;
 				});
 			});
+			//console.log("selindex:" + document.getElementById("selLang").selectedIndex);
+			document.getElementById("iLang").title = document.getElementById("selLang").options[document.getElementById("selLang").selectedIndex].text + " | " + targetLang;
 		}
 		else
 		{
