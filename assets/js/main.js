@@ -81,7 +81,7 @@ async function translatePage(targetLang)
 	else
 	{
 		//no support for Language Translation API
-		alert("Your browser does not support built-in language translation. Visit https://developer.mozilla.org/en-US/docs/Web/API/Translator for support. Chrome is supported");
+		alert("Your browser does not support built-in language translation. Visit https://developer.mozilla.org/en-US/docs/Web/API/Translator for support. Chrome on a non-mobile device is supported");
 		console.log("Your browser does not support built-in language translation. Visit https://developer.mozilla.org/en-US/docs/Web/API/Translator for support.");
 	}
 }
