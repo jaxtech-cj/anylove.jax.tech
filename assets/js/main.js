@@ -6,66 +6,78 @@
 
 const strSourceLang = "en";
 
-/*function translatePage(targetLang)
-{
-	console.log("translatepage");
-}*/
-
 async function translatePage(targetLang)
 {
 	//target language override for testing
 	//targetLang = "ar";
-	console.log("targetLang:" + targetLang);
-	
-	//verify translation support
-	const translatorAvailability = await Translator.availability({
-		sourceLanguage: strSourceLang,
-		targetLanguage: targetLang,
-	});
-	console.log("translatorAvailability:" + translatorAvailability);
+	//console.log("targetLang:" + targetLang);
 
-	if (translatorAvailability === "unavailable")
+	if ('Translator' in self && 'LanguageDetector' in self)
 	{
-		console.log(targetLang + " language is unavailable in your browser");
-		alert(targetLang + " language is unavailable in your browser");
-		return;
-	}
-	else if (translatorAvailability === "downloadable")
-	{
-		try
+		if (targetLang === "en")
 		{
-			const translator = await Translator.create({
-				sourceLanguage: strSourceLang,
-				targetLanguage: targetLang,
-				monitor(monitor) {
-					monitor.addEventListener("downloadprogress", (e) => {
-						console.log(`Downloaded ${Math.floor(e.loaded * 100)}%`);
-					});
-				},
-			});
-			console.log("download complete");
-			translator.destroy();
+			//load data from data-text attribute
+			//TO DO*****
 
-			translatePage(targetLang);
+			//temporarily reload the page
+			window.location.reload();
+			return;
 		}
-		catch (e)
-		{
-			console.log(e);
-		}
-	}
-	else if (translatorAvailability === "available")
-	{
-		const elements = document.querySelectorAll('[translate]');
 		
-		elements.forEach(element => {
-			//console.log(element.textContent);
-			translateText(targetLang, element.textContent).then((result) => {
-				//console.log(result);
-				element.textContent = result;
-			});
-			//console.log(result);
-			//element.textContent = result;
+		//verify translation support
+		const translatorAvailability = await Translator.availability({
+			sourceLanguage: strSourceLang,
+			targetLanguage: targetLang,
 		});
+		console.log("translatorAvailability:" + translatorAvailability);
+
+		if (translatorAvailability === "unavailable")
+		{
+			console.log(targetLang + " language is unavailable in your browser");
+			alert(targetLang + " language is unavailable in your browser");
+			return;
+		}
+		else if (translatorAvailability === "downloadable")
+		{
+			try
+			{
+				const translator = await Translator.create({
+					sourceLanguage: strSourceLang,
+					targetLanguage: targetLang,
+					monitor(monitor) {
+						monitor.addEventListener("downloadprogress", (e) => {
+							console.log(`Downloaded ${Math.floor(e.loaded * 100)}%`);
+						});
+					},
+				});
+				console.log("download complete");
+				translator.destroy();
+
+				translatePage(targetLang);
+			}
+			catch (e)
+			{
+				console.log("an error has occured:" + e);
+			}
+		}
+		else if (translatorAvailability === "available")
+		{
+			const elements = document.querySelectorAll('[data-text]');
+			
+			elements.forEach(element => {
+				//console.log(element.dataset.text);
+				translateText(targetLang, element.dataset.text).then((result) => {
+					//console.log(result);
+					element.textContent = result;
+				});
+			});
+		}
+	}
+	else
+	{
+		//no support for Language Translation API
+		alert("Your browser does not support built-in language translation. Visit https://developer.mozilla.org/en-US/docs/Web/API/Translator for support. Chrome is supported");
+		console.log("Your browser does not support built-in language translation. Visit https://developer.mozilla.org/en-US/docs/Web/API/Translator for support.");
 	}
 }
 
@@ -78,8 +90,6 @@ async function translateText(targetLang, sourceText)
 	{
 		if ('Translator' in self && 'LanguageDetector' in self)
 		{
-			
-
 			console.log(targetLang);
 
 			//verify translation support
@@ -88,12 +98,8 @@ async function translateText(targetLang, sourceText)
 				targetLanguage: targetLang,
 			});
 			//console.log(translatorAvailability);
-
-			if (translatorAvailability === "downloadable")
-			{
-				console.log(targetLang + " Language is available to download");
-			}
-			else if (translatorAvailability === "available")
+	
+			if (translatorAvailability === "available")
 			{
 				const translator = await Translator.create({
 					sourceLanguage: strSourceLang,
@@ -122,7 +128,6 @@ async function translateText(targetLang, sourceText)
 		}
 		else
 		{
-			alert("Your browser does not support built-in language translation. Use a browser such as Google Chrome.");
 			console.log("Your browser does not support built-in language translation. Visit https://developer.mozilla.org/en-US/docs/Web/API/Translator for support.");
 		}
 	}
