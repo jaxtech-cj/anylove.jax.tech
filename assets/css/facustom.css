@@ -633,6 +633,10 @@
   .fa-share-nodes {
       --fa: "\f1e0";
 }
+
+.fa-language {
+  --fa: "\f1ab";
+}
   
 .fa-heart { --fa: "\f004"; }
 .fa-circle-half-stroke { --fa: "\f042"; }

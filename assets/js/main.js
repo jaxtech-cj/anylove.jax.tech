@@ -2,6 +2,86 @@
 	Site by Corey Jackson and Eventually by HTML5 UP | html5up.net | @ajlkn | Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+function translatePage(targetLang)
+{
+	const elements = document.querySelectorAll('[translate]');
+	
+	elements.forEach(element => {
+		//console.log(element.textContent);
+		translateText(targetLang, element.textContent).then((result) => {
+			console.log(result);
+			element.textContent = result;
+		});
+		//console.log(result);
+		//element.textContent = result;
+	});
+}
+
+async function translateText(targetLang, sourceText)
+{
+	const strSourceLang = "en";
+	//target language override for testing
+	targetLang = "fr";
+
+	try
+	{
+		if ('Translator' in self && 'LanguageDetector' in self)
+		{
+			
+
+			console.log(targetLang);
+
+			//verify translation support
+			const translatorAvailability = await Translator.availability({
+				sourceLanguage: strSourceLang,
+				targetLanguage: targetLang,
+			});
+			console.log(translatorAvailability);
+
+			if (translatorAvailability === "downloadable")
+			{
+				console.log(targetLang + " Language is available to download");
+			}
+			else if (translatorAvailability === "available")
+			{
+				const translator = await Translator.create({
+					sourceLanguage: strSourceLang,
+					targetLanguage: targetLang,
+				});
+
+				//verify input quota
+				const totalInputQuota = translator.inputQuota;
+				if (totalInputQuota != "Infinity")
+				{
+					//warn developer if limited quota
+					console.log(totalInputQuota);
+				}
+
+				const translation = await translator.translate(sourceText);
+				console.log(translation);
+				
+				translator.destroy();
+				return translation.toString();
+			}
+			else if (translatorAvailability === "unavailable")
+			{
+				console.log(targetLang + " language is unavailable in your browser");
+				alert(targetLang + " language is unavailable in your browser");
+			}
+		}
+		else
+		{
+			alert("Your browser does not support built-in language translation. Use a browser such as Google Chrome.");
+			console.log("Your browser does not support built-in language translation. Visit https://developer.mozilla.org/en-US/docs/Web/API/Translator for support.");
+		}
+	}
+	catch (e)
+	{
+		console.log("An error has occured in language translation");
+		console.error(e);
+	}
+}
+
 function getSystemColorScheme() {
   // Get OS preference
   if (window.matchMedia('(prefers-color-scheme: light)').matches) {
@@ -13,7 +93,7 @@ function getSystemColorScheme() {
 function setColorScheme(theme)
 {
     console.log(theme);
-    if (theme == "system")
+    if (theme === "system")
     {
         theme = getSystemColorScheme();
     }
@@ -23,7 +103,10 @@ function setColorScheme(theme)
 }
 
 (function() {
-
+	if (location.href.includes("emojis.html"))
+	{
+		return;
+	}
 	"use strict";
 
 	var	$body = document.querySelector('body');
