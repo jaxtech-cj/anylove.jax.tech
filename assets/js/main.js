@@ -1,15 +1,34 @@
 /*
 	Site by Corey Jackson and Eventually by HTML5 UP | html5up.net | @ajlkn | Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+const strSourceLang = "en";
 
 function translatePage(targetLang)
 {
+	console.log("targetLang:" + targetLang);
+	//target language override for testing
+	//targetLang = "fr";
+
+	//verify translation support
+	const translatorAvailability = await Translator.availability({
+		sourceLanguage: strSourceLang,
+		targetLanguage: targetLang,
+	});
+	console.log(translatorAvailability);
+
+	if (translatorAvailability === "unavailable")
+	{
+		console.log(targetLang + " language is unavailable in your browser");
+		alert(targetLang + " language is unavailable in your browser");
+		return;
+	}
+	
 	const elements = document.querySelectorAll('[translate]');
 	
 	elements.forEach(element => {
 		//console.log(element.textContent);
 		translateText(targetLang, element.textContent).then((result) => {
-			console.log(result);
+			//console.log(result);
 			element.textContent = result;
 		});
 		//console.log(result);
@@ -19,9 +38,8 @@ function translatePage(targetLang)
 
 async function translateText(targetLang, sourceText)
 {
-	const strSourceLang = "en";
 	//target language override for testing
-	targetLang = "fr";
+	//targetLang = "fr";
 
 	try
 	{
@@ -36,7 +54,7 @@ async function translateText(targetLang, sourceText)
 				sourceLanguage: strSourceLang,
 				targetLanguage: targetLang,
 			});
-			console.log(translatorAvailability);
+			//console.log(translatorAvailability);
 
 			if (translatorAvailability === "downloadable")
 			{
@@ -58,7 +76,7 @@ async function translateText(targetLang, sourceText)
 				}
 
 				const translation = await translator.translate(sourceText);
-				console.log(translation);
+				//console.log(translation);
 				
 				translator.destroy();
 				return translation.toString();
@@ -66,7 +84,7 @@ async function translateText(targetLang, sourceText)
 			else if (translatorAvailability === "unavailable")
 			{
 				console.log(targetLang + " language is unavailable in your browser");
-				alert(targetLang + " language is unavailable in your browser");
+				//alert(targetLang + " language is unavailable in your browser");
 			}
 		}
 		else

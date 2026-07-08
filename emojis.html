@@ -297,7 +297,13 @@
     <i class="fa-duotone fa-solid fa-circle-half-stroke pointer" title="System Theme" id="theme-system"></i>
     <i class="fa-regular fa-moon pointer" title="Dark Theme" id="theme-dark"></i>
     <i class="fa-regular fa-sun-bright pointer" title="Light Theme" id="theme-light"></i>
-    <!-- <i class="fa-solid fa-language pointer" id="iTranslate"></i> -->
+    <i class="fa-solid fa-language" id="iTranslate"></i>
+    
+    <!-- <select id="selLang">
+        <option value="en">English</option>
+        <option value="fr">French</option>
+        <option value="ja">Japanese</option>
+    </select> -->
 </div>
     <div id="divLastModified" style="font-size: 8pt;"><span translate="yes">Last updated:</span> 07-Jul-2026</div>
   <br/><br/>
@@ -307,7 +313,8 @@
         document.getElementById("theme-system").addEventListener('click', (e) => { setColorScheme('system'); });
         document.getElementById("theme-dark").addEventListener('click', (e) => { setColorScheme('dark'); });
         document.getElementById("theme-light").addEventListener('click', (e) => { setColorScheme('light'); });
-        document.getElementById("iTranslate").addEventListener('click', (e) => { translatePage('fr'); });
+        document.getElementById("selLang").addEventListener('change', (e) => { translatePage(e.currentTarget.value); });
+        //document.getElementById("iTranslate").addEventListener('click', (e) => { translatePage('fr'); });
    });
 
    async function getLastModifiedDate(url)
