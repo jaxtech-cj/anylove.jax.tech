@@ -59,7 +59,8 @@ async function translateText(targetLang, text)
 						if (response.ok)
 						{
 							console.log("data returned");
-							console.log(data);
+							console.log("data:" + data);
+							console.log("JSON data:" + JSON.stringify(data));
 							//outputElement.textContent = data;
 
 							//write value to localStorage for future requests
