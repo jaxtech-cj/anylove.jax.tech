@@ -30,7 +30,8 @@ async function translateText(targetLang, text)
                 if (cachedVal !== null)
                 {
                     //use cached value if present
-                    outputElement.textContent = cachedVal;   
+                    
+					//outputElement.textContent = cachedVal;   
                 }
                 else
                 {
@@ -62,7 +63,10 @@ async function translateText(targetLang, text)
                         //write value to localStorage for future requests
                         try
                         {
-                            localStorage.setItem("en:" + targetLang + ":" + hash, data);
+							if (!data.includes("error"))
+							{
+                            	localStorage.setItem("en:" + targetLang + ":" + hash, data);
+							}
                         }
                         catch (error)
                         {
