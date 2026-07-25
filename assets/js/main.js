@@ -56,23 +56,30 @@ async function translateText(targetLang, text)
                     {
                         const response = await fetch(apiUrl, requestOptions);
                         const data = await response.text();
-                        console.log("data returned");
-                        console.log(data);
-                        //outputElement.textContent = data;
+						if (response.ok)
+						{
+							console.log("data returned");
+							console.log(data);
+							//outputElement.textContent = data;
 
-                        //write value to localStorage for future requests
-                        try
-                        {
-							if (!data.includes("error"))
+							//write value to localStorage for future requests
+							try
 							{
-                            	localStorage.setItem("en:" + targetLang + ":" + hash, data);
+								if (!data.includes("error"))
+								{
+									localStorage.setItem("en:" + targetLang + ":" + hash, data);
+								}
 							}
-                        }
-                        catch (error)
-                        {
-                            console.log("could not write to local storage");
-                            alert("could not write to local storage");
-                        }
+							catch (error)
+							{
+								console.log("could not write to local storage");
+								alert("could not write to local storage");
+							}
+						}
+						else
+						{
+							console.log("error in translating text. response HTTP statusCode:" + response.status);
+						}
                     }
                     catch (error)
                     {
