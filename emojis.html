@@ -297,7 +297,8 @@
     <i class="fa-duotone fa-solid fa-circle-half-stroke pointer" title="System Theme" id="theme-system"></i>
     <i class="fa-regular fa-moon pointer" title="Dark Theme" id="theme-dark"></i>
     <i class="fa-regular fa-sun-bright pointer" title="Light Theme" id="theme-light"></i>
-    <i class="fa-solid fa-language" id="iLang" title="Translate"></i>
+    <input type="button" id="btnTranslate" value="Translate Test">
+    <!--<i class="fa-solid fa-language" id="iLang" title="Translate"></i>
     <select id="selLang">
         <option value="en" data-english="English">English</option>
         <option value="ar" data-english="Arabic" title="Arabic">عربي</option>
@@ -338,7 +339,7 @@
         <option value="tr" data-english="Turkish" title="Turkish">Türkçe</option>
         <option value="uk" data-english="Ukrainian" title="Ukrainian">українська</option>
         <option value="vi" data-english="Vietnamese" title="Vietnamese">Tiếng Việt</option>
-    </select>
+    </select>-->
 </div>
     <div id="divLastModified" style="font-size: 8pt;"><span translate="yes" data-text="Last updated:">Last updated:</span> 08-Jul-2026</div>
   <br/><br/>
@@ -348,7 +349,9 @@
         document.getElementById("theme-system").addEventListener('click', (e) => { setColorScheme('system'); });
         document.getElementById("theme-dark").addEventListener('click', (e) => { setColorScheme('dark'); });
         document.getElementById("theme-light").addEventListener('click', (e) => { setColorScheme('light'); });
-        document.getElementById("selLang").addEventListener('change', (e) => { translatePage(e.currentTarget.value); });
+        document.getElementById("btnTranslate").addEventListener('click', (e) => { translatePage(); });
+        
+        //document.getElementById("selLang").addEventListener('change', (e) => { translatePage(e.currentTarget.value); });
         //document.getElementById("iTranslate").addEventListener('click', (e) => { translatePage('fr'); });
    });
 

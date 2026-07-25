@@ -5,145 +5,127 @@
 //manage installed languages -  chrome://on-device-translation-internals
 
 const strSourceLang = "en";
+const apiUrl = 'https://jax.tech/api/translatetext';
 
-async function translatePage(targetLang)
+async function translatePage()
 {
-	//target language override for testing
-	//targetLang = "ar";
-	//console.log("targetLang:" + targetLang);
-
-	if ('Translator' in self && 'LanguageDetector' in self)
-	{
-		if (targetLang === "en")
-		{
-			//load data from data-text attribute
-			//TO DO*****
-
-			//temporarily reload the page
-			window.location.reload();
-			return;
-		}
-		
-		//verify translation support
-		const translatorAvailability = await Translator.availability({
-			sourceLanguage: strSourceLang,
-			targetLanguage: targetLang,
-		});
-		//console.log("translatorAvailability:" + translatorAvailability);
-
-		if (translatorAvailability === "unavailable")
-		{
-			console.log(targetLang + " language is unavailable in your browser");
-			alert(targetLang + " language is unavailable in your browser");
-			return;
-		}
-		else if (translatorAvailability === "downloadable")
-		{
-			try
-			{
-				const translator = await Translator.create({
-					sourceLanguage: strSourceLang,
-					targetLanguage: targetLang,
-					monitor(monitor) {
-						monitor.addEventListener("downloadprogress", (e) => {
-							console.log(`Downloaded ${Math.floor(e.loaded * 100)}%`);
-						});
-					},
-				});
-				console.log("download complete");
-				translator.destroy();
-
-				translatePage(targetLang);
-			}
-			catch (e)
-			{
-				console.log("an error has occured:" + e);
-			}
-		}
-		else if (translatorAvailability === "available")
-		{
-			const elements = document.querySelectorAll('[data-text]');
-			
-			elements.forEach(element => {
-				//console.log(element.dataset.text);
-				translateText(targetLang, element.dataset.text).then((result) => {
-					//console.log(result);
-					element.textContent = result;
-				});
-			});
-			//console.log("selindex:" + document.getElementById("selLang").selectedIndex);
-			document.getElementById("iLang").title = document.getElementById("selLang").options[document.getElementById("selLang").selectedIndex].text + " | " + targetLang;
-		}
-		else
-		{
-			//unknown state
-			console.log("translatorAvailability:" + translatorAvailability);
-		}
-	}
-	else
-	{
-		//no support for Language Translation API
-		alert("Your browser does not support built-in language translation. Visit https://developer.mozilla.org/en-US/docs/Web/API/Translator for support. Chrome on a non-mobile device is supported");
-		console.log("Your browser does not support built-in language translation. Visit https://developer.mozilla.org/en-US/docs/Web/API/Translator for support.");
-	}
+	translateText("fr", "the cat walked down street");
 }
 
-async function translateText(targetLang, sourceText)
-{
-	//target language override for testing
-	//targetLang = "fr";
+async function translateText(targetLang, text)
+    {
+        //const outputElement = document.getElementById('divOutput');
 
-	try
-	{
-		if ('Translator' in self && 'LanguageDetector' in self)
-		{
-			console.log(targetLang);
+        //check for local storage
+        if (isLocalStorageEnabled() === true)
+        {
+            const hash = fastNonCryptoHash("en:" + targetLang + ":" + text);
+            console.log("hash:" + hash);
 
-			//verify translation support
-			const translatorAvailability = await Translator.availability({
-				sourceLanguage: strSourceLang,
-				targetLanguage: targetLang,
-			});
-			//console.log(translatorAvailability);
-	
-			if (translatorAvailability === "available")
-			{
-				const translator = await Translator.create({
-					sourceLanguage: strSourceLang,
-					targetLanguage: targetLang,
-				});
+            try
+            {
+                const cachedVal = localStorage.getItem("en:" + targetLang + ":" + hash);
+                console.log("cachedVal:" + cachedVal);
 
-				//verify input quota
-				const totalInputQuota = translator.inputQuota;
-				if (totalInputQuota != "Infinity")
-				{
-					//warn developer if limited quota
-					console.log(totalInputQuota);
-				}
+                if (cachedVal !== null)
+                {
+                    //use cached value if present
+                    outputElement.textContent = cachedVal;   
+                }
+                else
+                {
+                    //no cached value exists so retrieve from API
+                    const requestOptions = {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        credentials: 'include',
+                        body: JSON.stringify({
+                            q: text,
+                            source: 'en',
+                            target: targetLang
+                        })
+                    };
 
-				const translation = await translator.translate(sourceText);
-				//console.log(translation);
-				
-				translator.destroy();
-				return translation.toString();
-			}
-			else if (translatorAvailability === "unavailable")
-			{
-				console.log(targetLang + " language is unavailable in your browser");
-				//alert(targetLang + " language is unavailable in your browser");
-			}
-		}
-		else
-		{
-			console.log("Your browser does not support built-in language translation. Visit https://developer.mozilla.org/en-US/docs/Web/API/Translator for support.");
-		}
-	}
-	catch (e)
-	{
-		console.log("An error has occured in language translation");
-		console.error(e);
-	}
-}
+                    console.log("targetLang:" + targetLang);
+                    console.log("text:" + text);
+
+                    try
+                    {
+                        const response = await fetch(apiUrl, requestOptions);
+                        const data = await response.text();
+                        console.log("data returned");
+                        console.log(data);
+                        //outputElement.textContent = data;
+
+                        //write value to localStorage for future requests
+                        try
+                        {
+                            localStorage.setItem("en:" + targetLang + ":" + hash, data);
+                        }
+                        catch (error)
+                        {
+                            console.log("could not write to local storage");
+                            alert("could not write to local storage");
+                        }
+                    }
+                    catch (error)
+                    {
+                        console.error("An error has occured in POST request:" + error);
+                    }
+                }
+            }
+            catch (error)
+            {
+                console.error(error);
+            }
+        }
+        else
+        {
+            console.log("local storage is required to translate page");
+            alert("local storage is required to translate page");
+        }
+    }
+
+    function isLocalStorageEnabled()
+    {
+        try
+        {
+            const key = '__storage_test__';
+            window.localStorage.setItem(key, key);
+            window.localStorage.removeItem(key);
+            return true;
+        } catch (e) {
+            if (e instanceof DOMException && (
+                e.name === 'QuotaExceededError' ||
+                // Firefox
+                e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+                // acknowledge QuotaExceededError only if there's something already stored
+                window.localStorage.length !== 0) {
+                    console.log("Local storage is full");
+                    alert("Local storage is full");
+            } else {
+                console.log("Local storage is not available");
+                alert("Local storage is not available");
+            }
+            return false;
+        }
+    }
+
+    function fastNonCryptoHash(str)
+    {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            const char = str.charCodeAt(i);
+            // Bitwise shift and subtraction
+            hash = (hash << 5) - hash + char; 
+            // Convert to a 32-bit integer
+            hash |= 0; 
+        }
+        // Ensure an unsigned integer result
+        return hash >>> 0; 
+    }
 
 function getSystemColorScheme() {
   // Get OS preference
