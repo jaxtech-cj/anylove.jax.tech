@@ -5,7 +5,7 @@
 //manage installed languages -  chrome://on-device-translation-internals
 
 const strSourceLang = "en";
-const apiUrl = 'https://jax.tech/api/translatetext';
+const apiUrl = 'https://anylove.jax.tech/api/translatetext';
 
 async function translatePage()
 {
