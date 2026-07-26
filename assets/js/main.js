@@ -58,7 +58,7 @@ async function translateText(targetLang, text)
             try
             {
                 const cachedVal = localStorage.getItem("en:" + targetLang + ":" + hash);
-                console.log("cachedVal:" + cachedVal);
+                //console.log("cachedVal:" + cachedVal);
 
                 if (cachedVal !== null)
                 {
