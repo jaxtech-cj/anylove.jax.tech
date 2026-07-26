@@ -7,15 +7,48 @@
 const strSourceLang = "en";
 const apiUrl = 'https://anylove.jax.tech/api/translatetext';
 
-async function translatePage()
+async function translatePage(targetLang)
 {
-	translateText("fr", "the cat walked down street");
+	console.log("targetLang:" + targetLang);
+	if (targetLang === "en")
+	{
+		//load data from data-text attribute
+		//TO DO*****
+
+		//temporarily reload the page
+		window.location.reload();
+		return;
+	}
+	else
+	{
+		try
+		{
+			const elements = document.querySelectorAll('[data-text]');
+			
+			elements.forEach(element => {
+				//console.log(element.dataset.text);
+				//translateText("fr", "the cat walked down street");
+				translateText(targetLang, element.dataset.text).then((result) => {
+					console.log("result:" + result);
+					if (result !== null)
+					{
+						element.textContent = result;
+					}
+				});
+			})
+
+			//console.log("selindex:" + document.getElementById("selLang").selectedIndex);
+			//document.getElementById("iLang").title = document.getElementById("selLang").options[document.getElementById("selLang").selectedIndex].text + " | " + targetLang;
+		}
+		catch (err)
+		{
+			console.log("An error has occured in translating language:" + err);
+		}
+	}
 }
 
 async function translateText(targetLang, text)
-    {
-        //const outputElement = document.getElementById('divOutput');
-
+{
         //check for local storage
         if (isLocalStorageEnabled() === true)
         {
@@ -30,8 +63,7 @@ async function translateText(targetLang, text)
                 if (cachedVal !== null)
                 {
                     //use cached value if present
-                    
-					//outputElement.textContent = cachedVal;   
+					return cachedVal;
                 }
                 else
                 {
@@ -49,8 +81,8 @@ async function translateText(targetLang, text)
                         })
                     };
 
-                    console.log("targetLang:" + targetLang);
-                    console.log("text:" + text);
+                    //console.log("targetLang:" + targetLang);
+                    //console.log("text:" + text);
 
                     try
                     {
@@ -58,11 +90,10 @@ async function translateText(targetLang, text)
                         const data = await response.text();
 						if (response.ok)
 						{
-							console.log("data returned");
+							//console.log("data returned");
 							console.log("data:" + data);
-							console.log("JSON data:" + JSON.stringify(data));
-							//outputElement.textContent = data;
-
+							//console.log("JSON data:" + JSON.stringify(data));
+							
 							//write value to localStorage for future requests
 							try
 							{
@@ -76,15 +107,18 @@ async function translateText(targetLang, text)
 								console.log("could not write to local storage");
 								alert("could not write to local storage");
 							}
+							return data;
 						}
 						else
 						{
 							console.log("error in translating text. response HTTP statusCode:" + response.status);
+							return null;
 						}
                     }
                     catch (error)
                     {
                         console.error("An error has occured in POST request:" + error);
+						return null;
                     }
                 }
             }
