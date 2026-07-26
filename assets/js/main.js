@@ -29,7 +29,7 @@ async function translatePage(targetLang)
 				//console.log(element.dataset.text);
 				//translateText("fr", "the cat walked down street");
 				translateText(targetLang, element.dataset.text).then((result) => {
-					console.log("result:" + result);
+					//console.log("result:" + result);
 					if (result !== null)
 					{
 						element.textContent = result;
@@ -53,7 +53,7 @@ async function translateText(targetLang, text)
         if (isLocalStorageEnabled() === true)
         {
             const hash = fastNonCryptoHash("en:" + targetLang + ":" + text);
-            console.log("hash:" + hash);
+            //console.log("hash:" + hash);
 
             try
             {
@@ -91,7 +91,7 @@ async function translateText(targetLang, text)
 						if (response.ok)
 						{
 							//console.log("data returned");
-							console.log("data:" + data);
+							//console.log("data:" + data);
 							//console.log("JSON data:" + JSON.stringify(data));
 							
 							//write value to localStorage for future requests
