@@ -7,7 +7,7 @@
   Access-Control-Allow-Origin: https://anylove.jax.tech
   Cache-Control: public, max-age=2592000, immutable
   #Cache-Control: public, max-age=3600, immutable
-  Last-Modified: Tue, 27 Jun 2026 17:51:45 GMT
+  Last-Modified: Wed, 29 July 2026 17:51:45 GMT
   Content-Security-Policy: default-src 'self'; connect-src 'self' https://jax.tech https://cloudflareinsights.com static.cloudflareinsights.com; script-src 'nonce-AqHF5cLWrH+GjEXjNcEy2A==' 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; object-src 'none'; img-src 'self'; base-uri 'self'; frame-ancestors 'none'; media-src 'self'; require-trusted-types-for 'script'
 
 /emojis.html
