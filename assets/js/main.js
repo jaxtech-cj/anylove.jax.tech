@@ -1,8 +1,14 @@
 /*
-	Site by Corey Jackson and Eventually by HTML5 UP | html5up.net | @ajlkn | Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+@version:       0.9.0
+@fileoverview:  Translate Text Using Google Cloud Translate API and CF KV
+@author:        Corey Jackson
+@copyright:     Jax Tech Solutions Inc.
+@license:       MIT
+@info:			manage installed languages for translator API (N/A for this script)-  chrome://on-device-translation-internals
+@todo:			default lang to browser default
+@vernhistory:	0.8.0 - Jul. 26, 2026 - added local cache
+				0.9.0 - Jul. 29, 2026 - initial release
 */
-
-//manage installed languages -  chrome://on-device-translation-internals
 
 const strSourceLang = "en";
 const apiUrl = 'https://anylove.jax.tech/api/translatetext';
@@ -193,6 +199,8 @@ function setColorScheme(theme)
     //console.log(document.documentElement.style.colorScheme);
 }
 
+
+//function by HTML5 UP
 (function() {
 	if (location.href.includes("emojis"))
 	{
