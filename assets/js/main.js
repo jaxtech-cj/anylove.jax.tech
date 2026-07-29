@@ -38,7 +38,8 @@ async function translatePage(targetLang)
 					//console.log("result:" + result);
 					if (result !== null)
 					{
-						element.textContent = result;
+						//element.textContent = result;
+						element.innerHTML = result;
 					}
 				});
 			})
