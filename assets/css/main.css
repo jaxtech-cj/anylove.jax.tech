@@ -37,7 +37,7 @@ body > * {
 }
 .layout {
   display: grid;
-  grid-template-rows: 225px 1fr 100px;
+  grid-template-rows: auto 1fr auto;
   grid-row-gap: 0px;
   height: 100vh;
 }
