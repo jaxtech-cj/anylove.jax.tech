@@ -5,8 +5,8 @@
   Permissions-Policy: geolocation=(self "https://anylove.jax.tech")
   X-XSS-Protection: 1; mode=block
   Access-Control-Allow-Origin: https://anylove.jax.tech
-  Cache-Control: public, max-age=2592000, immutable
-  #Cache-Control: public, max-age=3600, immutable
+  #Cache-Control: public, max-age=2592000, immutable
+  #Cache-Control: public, max-age=0, immutable
   Last-Modified: Wed, 29 July 2026 17:51:45 GMT
   Content-Security-Policy: default-src 'self'; connect-src 'self' https://jax.tech https://cloudflareinsights.com static.cloudflareinsights.com; script-src 'nonce-AqHF5cLWrH+GjEXjNcEy2A==' 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; object-src 'none'; img-src 'self'; base-uri 'self'; frame-ancestors 'none'; media-src 'self'
 
